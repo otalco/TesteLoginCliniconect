@@ -14,7 +14,7 @@ public class TesteCasosLogin {
 
     private static final String URL_LOGIN = "https://ambientetestejoao.cliniconect.com.br/login";
     public static final String URL_AGENDA = "https://ambientetestejoao.cliniconect.com.br/agenda";
-    private ChromeDriver browser;
+    public ChromeDriver browser;
 
 
     @BeforeEach
@@ -26,11 +26,12 @@ public class TesteCasosLogin {
     public void afterEach(){
         this.paginaDeLogin.closeBrowser();
     }
-    @Test //Inserir espera.
+    @Test //Validado
     public void deveriaLogarComCredenciaisCorretasECheckBox() {
         paginaDeLogin.fulfillLogin("joaoguilherme.ferreira14@gmail.com", "26e7b781");
         paginaDeLogin.assignEULACheckbox();
         paginaDeLogin.submitForm();
+        paginaDeLogin.esperarCarregamentoAgenda();
         Assertions.assertTrue(paginaDeLogin.isPrivateURL());
     }
     @Test //Validado.
